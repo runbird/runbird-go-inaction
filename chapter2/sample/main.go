@@ -1,4 +1,4 @@
-package sample
+package main
 
 import (
 	"log"
@@ -7,6 +7,7 @@ import (
 	//_ "github.com/goinaction/code/chapter2/sample/matchers"
 	//"github.com/goinaction/code/chapter2/sample/search"
 	"runbird-go-inaction/chapter2/sample/search"
+	_ "runbird-go-inaction/chapter2/sample/matchers"  //使用别名调用 matchers/rss.go 中init()方法
 )
 
 //init在main之前调用

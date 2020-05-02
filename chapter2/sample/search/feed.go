@@ -5,7 +5,7 @@ import (
 	"os"
 )
 
-const dataFile = "data/data.json"
+const dataFile = "chapter2/sample/data/data.json"
 
 // `` --> tag;标记里描述了JSON解码的元数据
 type Feed struct {
