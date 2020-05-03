@@ -1,5 +1,7 @@
 package main
 
-func main() {
+import "database/sql"
 
+func main() {
+	sql.Open("postgres", "mydb")
 }
