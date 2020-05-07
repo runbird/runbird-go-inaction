@@ -57,6 +57,43 @@ func main() {
 
 	//创建切片的第3个索引，进行安全性保护
 	source := []string{"Red", "Blue", "Yellow", "Orange", "White"}
-	//长度为1 容量为2
-	source2 := source[2:3:4]
+	//长度为1 容量为1
+	//限制容量防止 共享底层数组，append修改原有数组的内容，append超过容量后新开一个底层数组
+	source2 := source[2:3:3]
+	fmt.Println(source, "\n", source2)
+	source2 = append(source2, "wiki")
+	fmt.Println(source, "\n", source2)
+
+	s1 := []int{1, 2}
+	s2 := []int{3, 4}
+	fmt.Printf("%v\n", append(s1, s2...))
+
+	//数字 %d  字符串 %v
+	//range从头开始迭代
+	for index, value := range source {
+		fmt.Printf("source :%v value: %v\n", index, value)
+	}
+
+	rangeSlice := []int{10, 20, 30, 40, 50}
+	for i, v := range rangeSlice {
+		fmt.Printf("Value: %d Value-Addr: %X ElementAddr :%X\n",
+			v, &v, &rangeSlice[i])
+	}
+
+	//多维切片 嵌入切片
+	//mutSlice -> 0 , 1 , 2 皆是指针指向 -> 底层数组{10}, {20, 30}, {40, 50, 60}
+	mutSlice := [][]int{{10}, {20, 30}, {40, 50, 60}}
+	//为第一个切片追加20
+	mutSlice[0] = append(mutSlice[0], 20)
+
+	//分配一个100W个整型值的切片
+	fooSlice := make([]int, 1e6)
+	//64位机器上，一个切片需要24字节内容，指针需要8字节，长度和容量各需要8字节
+	fooSlice = foo(fooSlice)
+
+}
+
+//函数间只需传递24字节的数据
+func foo(fooSlice []int) []int {
+	return fooSlice
 }
