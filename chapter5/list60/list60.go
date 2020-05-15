@@ -22,7 +22,12 @@ type admin struct {
 	level string
 }
 
-// ! 内部类的实现方法被提升到了外部类型
+//定义外部类的实现方法
+func (a *admin) notify() {
+	fmt.Printf("Sending admin email to %s<%s>\n",
+		a.name, a.email)
+}
+
 func sendNotification(n notifier) {
 	n.notify()
 }
@@ -37,10 +42,12 @@ func main() {
 	//直接访问内部类型的方法
 	//Sending user email to scy<scy@email.com>
 	ad.user.notify()
+
+	//ad类实现全部重写
 	//内部类型方法提升到外部类型访问
-	//Sending user email to scy<scy@email.com>
+	//Sending admin email to scy<scy@email.com>
 	ad.notify()
 
-	//Sending user email to scy<scy@email.com>
+	//Sending admin email to scy<scy@email.com>
 	sendNotification(&ad)
 }
