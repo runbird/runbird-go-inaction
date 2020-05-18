@@ -2,7 +2,7 @@ package main
 
 import (
 	"fmt"
-	"github.com/goinaction/code/chapter5/listing74/entities"
+	"runbird-go-inaction/chapter5/list74/entities"
 )
 
 func main() {
