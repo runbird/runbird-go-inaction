@@ -33,11 +33,12 @@ func player(name string, court chan int) {
 	defer wg.Done()
 
 	for {
-		//等待球被打过来
+		//阻塞goroutine等待球被打过来
 		ball, ok := <-court
 		if !ok {
 			//通道被关闭，赢球
-			fmt.Printf("Player %s Won \n", name)
+			fmt.Printf("Player %s Won\n", name)
+			return
 		}
 
 		//选择随机数来判定是否丢球
