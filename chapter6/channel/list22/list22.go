@@ -22,7 +22,8 @@ func main() {
 //若Runner 前未加go，导致baton 无数据写入 runner，死锁
 func Runner(baton chan int) {
 	var newRunner int
-	//等待接力棒
+	//等待接力棒 阻塞goroutine
+	// 新的goroutine会被在这里阻塞，等待开启它goroutine传送值
 	runner := <-baton
 	fmt.Printf("Runner %d Running With Baton \n", runner)
 
